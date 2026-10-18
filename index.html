@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PTES Herbal Garden</title>
+<meta name="description" content="Care guide for the PTES herbal garden: light, water, soil and benefits.">
+<meta name="theme-color" content="#2f6b3f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ea;--card:#fff;--ink:#1c2b20;--mute:#5f6e63;--acc:#2f6b3f;--soft:#e8efe0;--line:#e0dccd;--sh:0 6px 20px rgba(30,50,35,.08);--gc:#4c9a52}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0f1712;--card:#18231b;--ink:#e9f0e7;--mute:#9db0a1;--acc:#86cf98;--soft:#213126;--line:#2b3d30;--sh:0 6px 20px rgba(0,0,0,.35)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,-apple-system,"Segoe UI",Roboto,system-ui,sans-serif;min-height:100vh}
+main{max-width:760px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top,0px)) calc(16px + env(safe-area-inset-right,0px)) calc(48px + env(safe-area-inset-bottom,0px)) calc(16px + env(safe-area-inset-left,0px))}
+h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+a{color:inherit}
+.view{animation:in .4s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:36px 24px 28px;color:#fff;box-shadow:var(--sh);background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.25),transparent 42%),radial-gradient(circle at 5% 100%,rgba(255,255,255,.14),transparent 45%),linear-gradient(135deg,#4aa264,#1b472b)}
+.hero .lf{position:absolute;right:-6px;top:-10px;font-size:7rem;opacity:.16;transform:rotate(18deg)}
+.hero h1{font-size:2.3rem;position:relative}
+.hero p{margin:10px 0 16px;opacity:.92;max-width:34ch;position:relative}
+.stats{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.stats span{background:rgba(255,255,255,.18);border-radius:99px;padding:5px 12px;font-size:.85rem;font-weight:600}
+.search{margin:18px 0 6px}
+.search input{width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:14px 16px;font:inherit;box-shadow:var(--sh);outline:none}
+.search input:focus{border-color:var(--acc)}
+.res{margin-top:8px}
+.sec{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);font-weight:700;margin:22px 4px 10px}
+.grid{display:grid;gap:12px}
+@media (min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.gcard{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;text-decoration:none;box-shadow:var(--sh);transition:transform .15s}
+.gcard:hover{transform:translateY(-3px)}
+.em{font-size:1.7rem;background:var(--gc);border-radius:16px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;flex:none}
+.gcard b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+.gcard span.t{font-weight:600;line-height:1.3;display:block}
+.gcard small{color:var(--mute)}
+.back{display:inline-block;margin-bottom:14px;color:var(--acc);text-decoration:none;font-weight:600}
+.gh,.ph{border-radius:26px;color:#fff;padding:26px 22px;box-shadow:var(--sh);background:radial-gradient(circle at 90% 10%,rgba(255,255,255,.28),transparent 45%),linear-gradient(135deg,rgba(0,0,0,0),rgba(0,0,0,.38)),var(--gc)}
+.gh .tag{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;opacity:.9}
+.gh h2{font-size:1.7rem;margin:6px 0 14px}
+.cond{background:rgba(255,255,255,.2);border-radius:16px;padding:12px 14px}
+.note{background:var(--card);border:1px dashed var(--gc);border-radius:16px;padding:12px 14px;margin:14px 0;font-size:.92rem}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--sh);margin-top:14px}
+.tbl a{display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;border-top:1px solid var(--line);font-weight:500}
+.tbl a:first-of-type{border-top:0}
+.tbl a:hover{background:var(--soft)}
+.tbl i{font-style:normal;background:var(--gc);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex:none}
+.tbl em{margin-left:auto;font-style:normal;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips a{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:.88rem;text-decoration:none}
+.ph .pill{display:inline-block;background:rgba(255,255,255,.22);border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600;text-decoration:none;margin-bottom:12px}
+.ph h2{font-size:2rem}.ph i{display:block;opacity:.9;margin-top:4px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.tile,.big{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--sh)}
+.tile .ic{font-size:1.6rem}
+.tile h3,.big h3{font:700 .78rem Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);margin:4px 0}
+.tile p,.big p{margin:0}
+.big{margin-top:12px;border-left:6px solid var(--gc)}
+.big.tip{background:var(--soft)}
+.nav{display:flex;gap:10px;margin-top:18px}
+.nav a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;text-decoration:none;font-size:.9rem;box-shadow:var(--sh)}
+.nav a small{display:block;color:var(--mute)}
+.nav a:last-child{text-align:right}
+.fine{color:var(--mute);font-size:.82rem;margin-top:16px}
+.qrs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:14px}
+.q{background:#fff;color:#111;border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center}
+.q img{width:100%;max-width:170px;image-rendering:pixelated}
+.q b{display:block;margin-top:6px}.q small{color:#555}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;margin:8px 8px 8px 0}
+.inp{width:100%;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.warn{background:#fff3d6;color:#6b4e08;border-radius:12px;padding:10px 14px;margin:10px 0}
+footer{text-align:center;margin-top:30px;color:var(--mute);font-size:.85rem}
+footer a{color:var(--acc)}
+@media print{.noprint{display:none}body{background:#fff}}
+</style></head><body><main id="app"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+const G=[
+{t:"Moisture-loving herbs",e:"💧",c:"Moist but well-drained soil, regular watering, and protection from harsh afternoon sun.",n:"Stevia and sweet marjoram may prefer more sunlight and less moisture than mint.",p:"Mint pudina:mint,Lemon balm:lbalm,Peppermint:pepper,Stevia:stevia,Sweet marjoram:marj,Mint:mint,Catnip:catnip,Chocolate mint:choc,Supermint:super"},
+{t:"Sun-loving culinary & aromatic herbs",e:"☀️",c:"Around 6 hours of sunlight where practical, well-drained soil, and watering when needed.",n:"Mint generally prefers more moisture than rosemary and lavender.",p:"Long coriander:cor,Rosemary:rose,Green oregano:oreg,Lavandula (lavender):lav,Sweet basil:basil,Dill:dill,Supermint:super,Purple basil:pbasil,Ulam raja:raja,Oregano:oreg,Mugwort (Artemisia vulgaris):mug,Thai holy basil:holy,Greek oregano:oreg"},
+{t:"Tropical plants that love warmth",e:"🌴",c:"Warm temperatures, regular watering, moist fertile soil, and good drainage.",n:"Pandan tolerates partial shade. Red ginger prefers moist soil and some protection from intense sunlight.",p:"Serai (lemongrass):lg,Pandan:pan,Lemongrass:lg,Red ginger:rg,Ulam raja:raja,Talinum racemosum:tal,Roselle:rosel"},
+{t:"Moisture-loving leafy & traditional plants",e:"🍃",c:"Humid conditions, moist soil, regular watering, and protection from excessive afternoon sun.",n:"Bidara generally prefers full sun and well-drained soil. Confirm the exact species of Sabah snake grass and keladi tikus for accurate care.",p:"Sirih:sirih,Bidara:bidara,Sabah snake grass:snake,Keladi tikus:keladi,Sambung nyawa:sambung,Kumis kucing:kumis,Pecah beling:pecah,Indian borage:borage"},
+{t:"Flowering ornamental plants",e:"🌸",c:"Suitable potting soil, good drainage, and watering adjusted to each plant.",n:"Moss rose prefers full sun and soil that dries between watering. Balsam generally prefers moist soil and partial shade in hot weather.",p:"Moss rose:moss,Balsam:balsam,Begonia:begonia"},
+{t:"Foliage, succulents & fruiting plants",e:"🪴",c:"Suitable light, good drainage, and watering adjusted to each plant's needs.",n:"",p:"Money plant:money,Aloe vera:aloe,Green coleus:coleus,Celery:celery,Calamansi:cala,Scindapsus green-yellow:scind,Black Magic:black"}
+];
+// key|name|latin|light|water|soil|benefits|tip
+const D=`mint|Mint (Pudina)|Mentha spp.|Partial shade; shield from harsh afternoon sun|Keep evenly moist, water often|Moist, rich, well-drained|Fresh leaves for tea, drinks, cooking and garnish. Cooling aroma; traditionally used to ease indigestion.|Spreads aggressively, so grow it in its own pot.
+lbalm|Lemon balm|Melissa officinalis|Morning sun, afternoon shade|Regular; never let it dry out fully|Moist, well-drained|Lemon-scented calming tea; traditionally used for relaxation. Attracts bees and pollinators.|Trim often so it stays leafy instead of flowering.
+pepper|Peppermint|Mentha x piperita|Partial shade to about 4 hours of sun|Regular, keep soil moist|Moist, rich, well-drained|Strong menthol flavor for tea; traditionally used for upset stomach. Scent may deter some pests.|Harvest top leaves to keep it bushy; pot it to contain runners.
+stevia|Stevia|Stevia rebaudiana|Full to partial sun (more than mint)|Moderate; let the top soil dry slightly|Light, well-drained|Leaves are a natural, calorie-free sweetener many times sweeter than sugar.|Pinch tips to bush out and avoid waterlogging.
+marj|Sweet marjoram|Origanum majorana|Full sun, about 6 hours|Let the top soil dry between waterings|Light, well-drained|Mild, sweet oregano-like flavor for soups, meats and sauces; traditionally used to aid digestion.|Harvest before flowering for the best flavor.
+catnip|Catnip|Nepeta cataria|Full sun to light shade|Moderate|Well-drained|Cats love it. Tea is traditionally used to calm; may repel some insects.|Cats may chew or roll on it, so protect young plants.
+choc|Chocolate mint|Mentha x piperita 'Chocolate'|Partial shade|Regular, keep moist|Moist, well-drained|Chocolate-mint aroma that is lovely in desserts, tea and drinks.|Keep it potted; it runs like other mints.
+super|Supermint|Mint variety (confirm exact type)|Partial shade to morning sun|Regular, moist but not soggy|Moist, well-drained|Strong, fresh mint leaves for tea, drinks and cooking.|Care for it like mint; confirm the exact variety for fine-tuning.
+cor|Long coriander|Likely Eryngium foetidum (culantro)|Light shade to sun; shade in hot weather|Regular, moist soil|Fertile, well-drained|Strong coriander-like leaves used in curries, soups and salads.|Confirm species; culantro prefers more shade than regular coriander.
+rose|Rosemary|Salvia rosmarinus|Full sun, 6-8 hours|Let soil dry between waterings|Sandy, gritty, well-drained|Aromatic needles for roasts and tea; rich in antioxidants. Pollinators love its flowers.|Overwatering and poor drainage are its main killers.
+oreg|Oregano (Green / Greek)|Origanum vulgare|Full sun, 6 hours|Water when top soil is dry|Well-drained, not too rich|Pungent leaves for pizza, pasta and grilled dishes; contains antioxidants. Greek oregano is the strongest flavored.|Pinch regularly; flavor is best when slightly stressed.
+lav|Lavender|Lavandula spp.|Full sun, 6+ hours|Infrequent; let soil dry well|Gritty, well-drained|Calming scent for relaxation and sleep, tea and crafts; may deter mosquitoes and moths.|Hates wet feet and humidity: use a raised pot with good airflow.
+basil|Sweet basil|Ocimum basilicum|Full sun, 6+ hours|Regular, avoid soggy soil|Rich, well-drained|Classic for pasta, salads and pesto; vitamin K and antioxidants.|Pinch flower buds to keep leaves coming.
+dill|Dill|Anethum graveolens|Full sun|Regular but moderate|Loose, well-drained|Feathery leaves and seeds for fish, pickles and dips; traditionally used for digestion.|Dislikes transplanting; sow directly in its final pot.
+pbasil|Purple basil|Ocimum basilicum (purple)|Full sun, 6+ hours|Regular, avoid soggy soil|Rich, well-drained|Colorful garnish with a spicy-sweet taste; rich in anthocyanin antioxidants.|Pinch often; the color is deepest in full sun.
+raja|Ulam raja|Cosmos caudatus|Full sun|Moderate; tolerates short dry spells|Any well-drained soil|Eaten fresh as ulam; traditionally valued for antioxidants and general wellness.|Pinch shoots to encourage bushy growth.
+mug|Mugwort|Artemisia vulgaris|Full sun|Moderate; drought tolerant|Well-drained|Aromatic herb with a long history in traditional herbal use.|Spreads fast. Avoid use during pregnancy and check with a professional before consuming.
+holy|Thai holy basil|Ocimum tenuiflorum|Full sun|Regular, keep slightly moist|Rich, well-drained|Peppery leaves for stir-fries such as pad kra pao; traditionally used as a calming herb.|Pinch flowers for more leaves.
+lg|Lemongrass (Serai)|Cymbopogon citratus|Full sun, warm|Generous and regular|Fertile, moist, well-drained|Stalks flavor curries, soups and tea; leaves make a citrus tea. Aroma may help repel mosquitoes.|Harvest the outer stalks first and cut at the base.
+pan|Pandan|Pandanus amaryllifolius|Partial shade to bright light|Regular; keep soil moist|Moist, fertile, well-drained|Fragrant leaves for rice, cakes and desserts; adds natural green color.|Separate suckers to make new plants.
+rg|Red ginger|Alpinia purpurata|Bright light with protection from intense sun|Regular; keep soil moist|Moist, rich, well-drained|Striking red bracts for ornamental and cut-flower use; tropical garden showpiece.|Feed regularly and mulch to hold moisture.
+tal|Talinum racemosum|Talinum spp.|Sun to partial shade|Regular|Moist, fertile, well-drained|Tender edible leafy green, used in stir-fries and soups; source of vitamins and minerals.|Confirm exact species. Cut often to keep it producing.
+rosel|Roselle|Hibiscus sabdariffa|Full sun, warm|Regular; deep watering|Fertile, well-drained|Red calyces make a tangy tea and jam, high in vitamin C and antioxidants. Young leaves are edible.|Harvest calyces when plump, before they harden.
+sirih|Sirih (betel leaf)|Piper betle|Partial shade; humid|Regular, keep moist|Rich, moist, well-drained|Leaves have a long traditional use as an antiseptic and in herbal washes.|A climber: give it a pole or trellis.
+bidara|Bidara|Ziziphus mauritiana|Full sun|Deep but infrequent|Well-drained|Edible fruit; leaves feature in traditional remedies.|Thorny; prune to shape and give it room.
+snake|Sabah snake grass|Clinacanthus nutans|Bright light to partial shade|Regular, moist soil|Moist, well-drained|Leaves are widely used in traditional herbal drinks.|Confirm the exact species before use; propagates easily from cuttings.
+keladi|Keladi tikus|Typhonium flagelliforme|Partial shade|Regular, moist soil|Moist, rich, well-drained|Used in traditional herbal practice.|Raw parts can irritate and should not be eaten without expert guidance. Confirm species.
+sambung|Sambung nyawa|Gynura procumbens|Partial shade, some morning sun|Regular, keep moist|Moist, fertile|Leaves are traditionally used for general wellness and eaten as ulam.|Roots very easily from cuttings.
+kumis|Kumis kucing|Orthosiphon aristatus|Bright light, afternoon shade|Regular, moist|Moist, well-drained|Tea is traditionally used to support kidney and urinary health. Pretty whisker-like flowers.|Harvest leaves before flowering for best quality.
+pecah|Pecah beling|Strobilanthes crispa|Partial shade|Regular, keep moist|Moist, fertile|Tea made from leaves is traditionally used for kidney health.|Fast-growing; trim often to keep it compact.
+borage|Indian borage|Plectranthus amboinicus|Bright light to partial sun|Moderate; let soil dry slightly|Well-drained|Aromatic leaves flavor meat dishes and are traditionally used for coughs.|Very easy from cuttings; avoid overwatering.
+moss|Moss rose|Portulaca grandiflora|Full sun|Let soil dry between waterings|Sandy, well-drained|Cheerful blooms in bright colors; tough, drought-proof ground cover.|Flowers close at night and on cloudy days.
+balsam|Balsam|Impatiens balsamina|Partial shade in hot weather|Regular, keep moist|Moist, rich, well-drained|Bright flowers for borders and pots; petals have been used as a natural dye.|Seed pods pop open when touched, which is great for kids.
+begonia|Begonia|Begonia spp.|Bright indirect light|Water lightly; avoid wetting leaves|Light, airy, well-drained|Long-lasting flowers and decorative foliage.|Water at soil level to prevent mildew.
+money|Money plant|Epipremnum aureum|Bright indirect light|When the top inch of soil is dry|Any well-drained potting mix|Very hardy trailing plant, can grow in water. Brightens indoor spaces.|Toxic to pets and kids if eaten.
+aloe|Aloe vera|Aloe vera|Bright light, some direct sun|Infrequent; let soil dry fully|Gritty cactus mix|Gel is widely used to soothe minor burns and dry skin.|Rot from overwatering is the main risk.
+coleus|Green coleus|Coleus / Plectranthus scutellarioides|Filtered light|Keep lightly moist|Rich, well-drained|Attractive foliage plant that adds color.|Pinch flower spikes to keep leaves full.
+celery|Celery|Apium graveolens|Partial to full sun, cooler spots|Regular, never dry out|Fertile, moisture-retentive|Crunchy stalks and leaves for soups and salads; source of vitamin K.|Can struggle in heat; feed regularly.
+cala|Calamansi|Citrus x microcarpa|Full sun, sunny location|Regular, with good drainage|Well-drained, slightly acidic|Juicy small citrus rich in vitamin C for drinks and cooking.|Feed with citrus fertilizer and avoid waterlogging.
+scind|Scindapsus green-yellow|Scindapsus pictus (confirm)|Bright indirect light|Let top soil dry between waterings|Chunky, well-drained|Easy trailing foliage plant for shelves and hanging pots.|Toxic if eaten; keep away from pets.
+black|Black Magic|Likely Colocasia 'Black Magic'|Bright filtered light|Keep moist|Moist, well-drained|Dramatic near-black leaves, striking in pots and borders.|Toxic if eaten. Confirm the exact plant for care.`;
+const P={};D.split("\n").forEach(l=>{const a=l.split("|");P[a[0]]={n:a[1],l:a[2],s:a[3],w:a[4],o:a[5],b:a[6],t:a[7]}});
+G.forEach(g=>{g.i=g.p.split(",").map(x=>{const i=x.lastIndexOf(":");return[x.slice(0,i),x.slice(i+1)]})});
+const C=["#2a9d8f","#e9a23b","#e76f51","#4c9a52","#d65a8a","#7b6cc4"];
+const app=document.getElementById("app"),IDX={};
+G.forEach((g,i)=>g.i.forEach(([n,k])=>{if(!(k in IDX))IDX[k]=i+1}));
+const base=()=>location.href.split("#")[0].split("?")[0];
+const show=(h,k)=>{app.innerHTML=`<div class="view" style="--gc:${C[(k||4)-1]}">${h}</div>`};
+function home(){
+ show(`<div class="hero"><span class="lf">🌿</span><h1>PTES<br>Herbal Garden</h1><p>Find out what each plant needs to thrive, and what it's good for.</p><div class="stats"><span>6 groups</span><span>${Object.keys(P).length} plants</span></div></div>
+ <div class="search"><input type="search" placeholder="🔍 Search any plant..." oninput="srch(this.value)" autocomplete="off"><div class="res" id="res"></div></div>
+ <div class="sec">Browse by group</div>
+ <div class="grid">${G.map((g,i)=>`<a class="gcard" style="--gc:${C[i]}" href="#g${i+1}"><span class="em">${g.e}</span><div><b>Group ${i+1}</b><span class="t">${g.t}</span><small>${g.i.length} plants</small></div></a>`).join("")}</div>
+ <footer><a href="#qr">Printable QR codes</a></footer>`)}
+function srch(v){
+ v=v.trim().toLowerCase();const r=document.getElementById("res");
+ if(!v){r.innerHTML="";return}
+ const m=Object.keys(P).filter(k=>(P[k].n+" "+P[k].l).toLowerCase().includes(v)||G.some(g=>g.i.some(([n,x])=>x==k&&n.toLowerCase().includes(v))));
+ r.innerHTML=m.length?`<div class="tbl">${m.map(k=>`<a style="--gc:${C[IDX[k]-1]}" href="#p/${k}/${IDX[k]}"><i>${IDX[k]}</i>${P[k].n}<em>›</em></a>`).join("")}</div>`:`<p class="fine">No plant found.</p>`}
+function group(k){
+ const g=G[k-1];
+ show(`<a class="back" href="#">← All groups</a>
+ <div class="gh"><div class="tag">Group ${k}</div><h2>${g.e} ${g.t}</h2><div class="cond"><b>Conditions:</b> ${g.c}</div></div>
+ ${g.n?`<div class="note">💡 ${g.n}</div>`:""}
+ <div class="sec">Tap a plant to learn more</div>
+ <div class="tbl" style="margin-top:0">${g.i.map(([n,key],j)=>`<a href="#p/${key}/${k}"><i>${j+1}</i>${n}<em>›</em></a>`).join("")}</div>
+ <div class="chips">${G.map((x,i)=>i+1==k?"":`<a href="#g${i+1}">${x.e} Group ${i+1}</a>`).join("")}</div>`,k)}
+function plant(key,k){
+ const p=P[key];if(!p)return home();
+ k=+k>=1&&+k<=6?+k:IDX[key];
+ const g=G[k-1],L=g.i,i=L.findIndex(x=>x[1]==key),pv=L[i-1],nx=L[i+1];
+ const nv=(x,d)=>x?`<a href="#p/${x[1]}/${k}"><small>${d}</small>${x[0]}</a>`:`<a href="#g${k}"><small>Back to</small>Group ${k}</a>`;
+ show(`<a class="back" href="#g${k}">← Group ${k}</a>
+ <div class="ph"><a class="pill" href="#g${k}">${g.e} Group ${k}</a><h2>${p.n}</h2><i>${p.l}</i></div>
+ <div class="tiles"><div class="tile"><div class="ic">☀️</div><h3>Light</h3><p>${p.s}</p></div><div class="tile"><div class="ic">💧</div><h3>Water</h3><p>${p.w}</p></div><div class="tile"><div class="ic">🌱</div><h3>Soil</h3><p>${p.o}</p></div></div>
+ <div class="big"><h3>✨ Benefits &amp; uses</h3><p>${p.b}</p></div>
+ <div class="big tip"><h3>📝 Care tip</h3><p>${p.t}</p></div>
+ <div class="nav">${nv(pv,"← Previous")}${nv(nx,"Next →")}</div>
+ <p class="fine">Traditional uses are general information, not medical advice.</p>`,k)}
+function qr(u){
+ u=u||base();let h="";
+ G.forEach((g,i)=>{let img="";try{const q=qrcode(0,"M");q.addData(u.split("#")[0]+"#g"+(i+1));q.make();img=q.createImgTag(6,8)}catch(e){img="<p>QR library unavailable (needs internet)</p>"}
+  h+=`<div class="q">${img}<b>Group ${i+1}</b><small>${g.e} ${g.t}</small></div>`});
+ show(`<a class="back noprint" href="#">← Back</a><h2>Printable QR codes</h2>
+ ${location.protocol=="file:"?`<div class="warn noprint">You're viewing this from your own computer. Open the page from its public link, or paste that link below.</div>`:""}
+ <p class="noprint fine">Each code opens its group's plant table. Check the link below is your public site address, then print.</p>
+ <input id="u" class="inp noprint" value="${u}"><button class="btn noprint" onclick="qr(document.getElementById('u').value)">Update codes</button><button class="btn noprint" onclick="window.print()">🖨 Print</button>
+ <div class="qrs">${h}</div>`)}
+function route(){
+ const h=cur!==null?cur:location.hash.slice(1),a=h.split("/");try{window.scrollTo(0,0)}catch(e){}
+ if(/^g[1-6]$/.test(h))group(+h[1]);
+ else if(a[0]=="p")plant(a[1],a[2]);
+ else if(h=="qr")qr();else home()}
+let cur=null;
+function go(h){cur=h;try{location.hash=h}catch(e){}route()}
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();go(a.getAttribute("href").slice(1))});
+addEventListener("hashchange",()=>{if(location.hash.slice(1)!==cur){cur=null;route()}});
+route();
+</script></body></html>
