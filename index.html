@@ -75,6 +75,17 @@ a{color:inherit}
 footer{text-align:center;margin-top:30px;color:var(--mute);font-size:.85rem}
 footer a{color:var(--acc)}
 @media print{.noprint{display:none}body{background:#fff}}
+.fbo{position:fixed;top:0;right:0;bottom:0;left:0;z-index:50;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.fbc{position:relative;background:var(--card);color:var(--ink);border-radius:24px;padding:24px 20px 20px;width:100%;max-width:420px;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:in .3s ease both}
+.fbc h2{font-size:1.5rem;padding-right:28px}
+.fbx{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.8rem;line-height:1;color:var(--mute);cursor:pointer}
+.rate{display:flex;gap:8px;margin-bottom:12px}
+.rate button{flex:1;font-size:1.6rem;background:var(--soft);border:2px solid transparent;border-radius:14px;padding:8px 0;cursor:pointer}
+.rate button.on{border-color:var(--acc);background:var(--card);transform:scale(1.08)}
+.fbc textarea{resize:vertical}
+.ghost{background:transparent;color:var(--mute)}
+.lnk{background:none;border:0;color:var(--acc);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+@media print{.fbo{display:none}}
 </style></head><body><main id="app"></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
@@ -140,7 +151,7 @@ function home(){
  <div class="search"><input type="search" placeholder="🔍 Search any plant..." oninput="srch(this.value)" autocomplete="off"><div class="res" id="res"></div></div>
  <div class="sec">Browse by group</div>
  <div class="grid">${G.map((g,i)=>`<a class="gcard" style="--gc:${C[i]}" href="#g${i+1}"><span class="em">${g.e}</span><div><b>Group ${i+1}</b><span class="t">${g.t}</span><small>${g.i.length} plants</small></div></a>`).join("")}</div>
- <footer><a href="#qr">Printable QR codes</a></footer>`)}
+ <footer><a href="#qr">Printable QR code</a>${FEEDBACK_KEY?` &middot; <button class="lnk" onclick="openFb()">Give feedback</button>`:""}</footer>`)}
 function srch(v){
  v=v.trim().toLowerCase();const r=document.getElementById("res");
  if(!v){r.innerHTML="";return}
@@ -168,21 +179,47 @@ function plant(key,k){
  <p class="fine">Traditional uses are general information, not medical advice.</p>`,k)}
 function qr(u){
  u=u||base();let h="";
- G.forEach((g,i)=>{let img="";try{const q=qrcode(0,"M");q.addData(u.split("#")[0]+"#g"+(i+1));q.make();img=q.createImgTag(6,8)}catch(e){img="<p>QR library unavailable (needs internet)</p>"}
-  h+=`<div class="q">${img}<b>Group ${i+1}</b><small>${g.e} ${g.t}</small></div>`});
- show(`<a class="back noprint" href="#">← Back</a><h2>Printable QR codes</h2>
+ try{const q=qrcode(0,"M");q.addData(u.split("#")[0]);q.make();h=q.createImgTag(8,10)}catch(e){h="<p>QR library unavailable (needs internet)</p>"}
+ h=`<div class="q">${h}<b>PTES Herbal Garden</b><small>Scan to open the plant guide</small></div>`;
+ show(`<a class="back noprint" href="#">← Back</a><h2>Printable QR code</h2>
  ${location.protocol=="file:"?`<div class="warn noprint">You're viewing this from your own computer. Open the page from its public link, or paste that link below.</div>`:""}
- <p class="noprint fine">Each code opens its group's plant table. Check the link below is your public site address, then print.</p>
- <input id="u" class="inp noprint" value="${u}"><button class="btn noprint" onclick="qr(document.getElementById('u').value)">Update codes</button><button class="btn noprint" onclick="window.print()">🖨 Print</button>
- <div class="qrs">${h}</div>`)}
+ <p class="noprint fine">This one code opens the whole website. Check the link below is your public site address, then print.</p>
+ <input id="u" class="inp noprint" value="${u}"><button class="btn noprint" onclick="qr(document.getElementById('u').value)">Update code</button><button class="btn noprint" onclick="window.print()">🖨 Print</button>
+ <div class="qrs" style="grid-template-columns:1fr;max-width:300px;margin:14px auto">${h}</div>`)}
 function route(){
  const h=cur!==null?cur:location.hash.slice(1),a=h.split("/");try{window.scrollTo(0,0)}catch(e){}
  if(/^g[1-6]$/.test(h))group(+h[1]);
  else if(a[0]=="p")plant(a[1],a[2]);
  else if(h=="qr")qr();else home()}
+// ---- Feedback form (sends to YOUR inbox via Web3Forms; nothing is shown on the site) ----
+const FEEDBACK_KEY=""; // paste your Web3Forms access key between the quotes
+const SRC=location.hash.slice(1)||"home";
+const ls=(a,k,v)=>{try{return v===undefined?a.getItem(k):a.setItem(k,v)}catch(e){}};
+let rt=0;
+function rate(n){rt=n;document.querySelectorAll("#rate button").forEach(b=>b.className=(+b.getAttribute("data-v")==n)?"on":"")}
+function closeFb(){const d=document.getElementById("fb");if(d)d.remove();ls(sessionStorage,"fbSeen","1")}
+function openFb(){
+ if(!FEEDBACK_KEY||document.getElementById("fb"))return;
+ rt=0;const d=document.createElement("div");d.id="fb";d.className="fbo";
+ d.innerHTML='<div class="fbc" role="dialog" aria-modal="true" aria-label="Feedback"><button class="fbx" aria-label="Close" onclick="closeFb()">&times;</button><h2>🌿 How are we doing?</h2><p class="fine" style="margin:6px 0 14px">Tell us what you think of the PTES Herbal Garden guide. It only takes a moment, and it\'s anonymous unless you add your name.</p><form id="fbf" onsubmit="sendFb(event)"><div class="rate" id="rate">'+["😞","😐","🙂","😀","🤩"].map((e,i)=>'<button type="button" data-v="'+(i+1)+'" onclick="rate('+(i+1)+')" aria-label="Rating '+(i+1)+' of 5">'+e+'</button>').join("")+'</div><textarea id="fbm" class="inp" rows="4" placeholder="What did you like? What could be better?" maxlength="1000"></textarea><input id="fbn" class="inp" placeholder="Your name (optional)" maxlength="60" autocomplete="off" style="margin-top:10px"><input type="checkbox" id="fbb" style="display:none" tabindex="-1" autocomplete="off"><p class="fine" id="fbe" style="color:#b3261e;margin:8px 0 0"></p><button class="btn" type="submit" id="fbs">Send feedback</button><button class="btn ghost" type="button" onclick="closeFb()">Maybe later</button></form></div>';
+ document.body.appendChild(d)}
+function sendFb(e){
+ e.preventDefault();
+ const m=document.getElementById("fbm").value.trim(),n=document.getElementById("fbn").value.trim(),er=document.getElementById("fbe"),b=document.getElementById("fbs");
+ if(document.getElementById("fbb").checked)return;
+ if(!rt&&!m){er.textContent="Please pick a rating or write a message.";return}
+ er.textContent="";b.disabled=true;b.textContent="Sending...";
+ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+  body:JSON.stringify({access_key:FEEDBACK_KEY,subject:"PTES Herbal Garden feedback",from_name:"PTES Herbal Garden",rating:rt?rt+"/5":"not given",message:m||"(no message)",name:n||"Anonymous",opened_from:SRC})})
+ .then(r=>r.json().catch(()=>({})).then(j=>{if(!r.ok||j.success===false)throw 0;
+  ls(localStorage,"fbDone","1");
+  document.querySelector("#fb .fbc").innerHTML='<h2>Thank you! 🌱</h2><p style="margin:10px 0 16px">Your feedback was sent.</p><button class="btn" onclick="closeFb()">Close</button>';
+  setTimeout(closeFb,3000)}))
+ .catch(()=>{er.textContent="Couldn't send. Check your connection and try again.";b.disabled=false;b.textContent="Send feedback"})}
+function initFb(){if(!FEEDBACK_KEY||ls(localStorage,"fbDone")||ls(sessionStorage,"fbSeen"))return;setTimeout(openFb,800)}
 let cur=null;
 function go(h){cur=h;try{location.hash=h}catch(e){}route()}
 document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();go(a.getAttribute("href").slice(1))});
 addEventListener("hashchange",()=>{if(location.hash.slice(1)!==cur){cur=null;route()}});
-route();
+route();initFb();
 </script></body></html>
