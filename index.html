@@ -151,7 +151,7 @@ function home(){
  <div class="search"><input type="search" placeholder="🔍 Search any plant..." oninput="srch(this.value)" autocomplete="off"><div class="res" id="res"></div></div>
  <div class="sec">Browse by group</div>
  <div class="grid">${G.map((g,i)=>`<a class="gcard" style="--gc:${C[i]}" href="#g${i+1}"><span class="em">${g.e}</span><div><b>Group ${i+1}</b><span class="t">${g.t}</span><small>${g.i.length} plants</small></div></a>`).join("")}</div>
- <footer><a href="#qr">Printable QR code</a>${FEEDBACK_KEY?` &middot; <button class="lnk" onclick="openFb()">Give feedback</button>`:""}</footer>`)}
+ <footer><a href="#qr">Printable QR code</a>${FORM_URL?` &middot; <button class="lnk" onclick="openFb()">Give feedback</button>`:""}</footer>`)}
 function srch(v){
  v=v.trim().toLowerCase();const r=document.getElementById("res");
  if(!v){r.innerHTML="";return}
@@ -191,32 +191,17 @@ function route(){
  if(/^g[1-6]$/.test(h))group(+h[1]);
  else if(a[0]=="p")plant(a[1],a[2]);
  else if(h=="qr")qr();else home()}
-// ---- Feedback form (sends to YOUR inbox via Web3Forms; nothing is shown on the site) ----
-const FEEDBACK_KEY=""; // paste your Web3Forms access key between the quotes
-const SRC=location.hash.slice(1)||"home";
+// ---- Feedback: opens your Microsoft Form in a new tab (responses are only visible to you in Microsoft Forms) ----
+const FORM_URL="https://forms.cloud.microsoft/r/JqRSaPSvXP?origin=lprLink";
 const ls=(a,k,v)=>{try{return v===undefined?a.getItem(k):a.setItem(k,v)}catch(e){}};
-let rt=0;
-function rate(n){rt=n;document.querySelectorAll("#rate button").forEach(b=>b.className=(+b.getAttribute("data-v")==n)?"on":"")}
 function closeFb(){const d=document.getElementById("fb");if(d)d.remove();ls(sessionStorage,"fbSeen","1")}
+function doneFb(){ls(localStorage,"fbDone","1");setTimeout(closeFb,300)}
 function openFb(){
- if(!FEEDBACK_KEY||document.getElementById("fb"))return;
- rt=0;const d=document.createElement("div");d.id="fb";d.className="fbo";
- d.innerHTML='<div class="fbc" role="dialog" aria-modal="true" aria-label="Feedback"><button class="fbx" aria-label="Close" onclick="closeFb()">&times;</button><h2>🌿 How are we doing?</h2><p class="fine" style="margin:6px 0 14px">Tell us what you think of the PTES Herbal Garden guide. It only takes a moment, and it\'s anonymous unless you add your name.</p><form id="fbf" onsubmit="sendFb(event)"><div class="rate" id="rate">'+["😞","😐","🙂","😀","🤩"].map((e,i)=>'<button type="button" data-v="'+(i+1)+'" onclick="rate('+(i+1)+')" aria-label="Rating '+(i+1)+' of 5">'+e+'</button>').join("")+'</div><textarea id="fbm" class="inp" rows="4" placeholder="What did you like? What could be better?" maxlength="1000"></textarea><input id="fbn" class="inp" placeholder="Your name (optional)" maxlength="60" autocomplete="off" style="margin-top:10px"><input type="checkbox" id="fbb" style="display:none" tabindex="-1" autocomplete="off"><p class="fine" id="fbe" style="color:#b3261e;margin:8px 0 0"></p><button class="btn" type="submit" id="fbs">Send feedback</button><button class="btn ghost" type="button" onclick="closeFb()">Maybe later</button></form></div>';
+ if(!FORM_URL||document.getElementById("fb"))return;
+ const d=document.createElement("div");d.id="fb";d.className="fbo";
+ d.innerHTML='<div class="fbc" role="dialog" aria-modal="true" aria-label="Feedback"><button class="fbx" aria-label="Close" onclick="closeFb()">&times;</button><h2>🌿 We&rsquo;d love your feedback</h2><p style="margin:8px 0 16px">Thanks for visiting the PTES Herbal Garden! Tell us what you think in a quick form. It takes under a minute.</p><a class="btn" style="display:block;text-align:center;text-decoration:none;margin:0 0 8px" href="'+FORM_URL+'" target="_blank" rel="noopener noreferrer" onclick="doneFb()">Open feedback form</a><button class="btn ghost" style="width:100%;margin:0" type="button" onclick="closeFb()">Maybe later</button><p class="fine" style="text-align:center;margin:10px 0 0">Opens in a new tab</p></div>';
  document.body.appendChild(d)}
-function sendFb(e){
- e.preventDefault();
- const m=document.getElementById("fbm").value.trim(),n=document.getElementById("fbn").value.trim(),er=document.getElementById("fbe"),b=document.getElementById("fbs");
- if(document.getElementById("fbb").checked)return;
- if(!rt&&!m){er.textContent="Please pick a rating or write a message.";return}
- er.textContent="";b.disabled=true;b.textContent="Sending...";
- fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
-  body:JSON.stringify({access_key:FEEDBACK_KEY,subject:"PTES Herbal Garden feedback",from_name:"PTES Herbal Garden",rating:rt?rt+"/5":"not given",message:m||"(no message)",name:n||"Anonymous",opened_from:SRC})})
- .then(r=>r.json().catch(()=>({})).then(j=>{if(!r.ok||j.success===false)throw 0;
-  ls(localStorage,"fbDone","1");
-  document.querySelector("#fb .fbc").innerHTML='<h2>Thank you! 🌱</h2><p style="margin:10px 0 16px">Your feedback was sent.</p><button class="btn" onclick="closeFb()">Close</button>';
-  setTimeout(closeFb,3000)}))
- .catch(()=>{er.textContent="Couldn't send. Check your connection and try again.";b.disabled=false;b.textContent="Send feedback"})}
-function initFb(){if(!FEEDBACK_KEY||ls(localStorage,"fbDone")||ls(sessionStorage,"fbSeen"))return;setTimeout(openFb,800)}
+function initFb(){if(!FORM_URL||ls(localStorage,"fbDone")||ls(sessionStorage,"fbSeen"))return;setTimeout(openFb,800)}
 let cur=null;
 function go(h){cur=h;try{location.hash=h}catch(e){}route()}
 document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();go(a.getAttribute("href").slice(1))});
